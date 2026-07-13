@@ -1,0 +1,19 @@
+ARK Master Suite — setup (Windows portable)
+==============================================
+
+1. Extract or place the portable executable in a folder of your choice.
+2. Double-click "ARK Master Suite.exe" (name may include version).
+3. Allow SmartScreen / antivirus if prompted (unsigned local builds).
+4. Web stack: the UI loads from packaged files (file://). Teleport and presets
+   persist in local storage on this machine only.
+
+Optional
+--------
+• Cave dataset ingest is a developer workflow: see repository README (npm run ingest:caves).
+• config_template.json and .env.example describe optional templates; the app does
+  not require a .env file to run.
+
+Updates
+-------
+Replace the .exe with a newer build; clear browser/Electron cache only if you
+need to reset stored presets (advanced).

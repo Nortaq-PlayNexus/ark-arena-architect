@@ -1,0 +1,18 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`preset generation snapshots > keeps representative preset outputs stable 1`] = `
+{
+  "Colosseum": {
+    "count": 1794,
+    "hash": "ed8e2923",
+  },
+  "Maze": {
+    "count": 863,
+    "hash": "f45372e2",
+  },
+  "Sphere": {
+    "count": 336,
+    "hash": "39425e20",
+  },
+}
+`;

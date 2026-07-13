@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ARK Master Suite — optional local config template",
+  "description": "Presets and teleport data are normally stored in the browser (localStorage). Use this file as a reference for JSON export/import shapes only.",
+  "type": "object",
+  "properties": {
+    "notes": {
+      "type": "string",
+      "default": "Export a preset from the app (Export JSON) to capture the full schema for your workflow."
+    }
+  }
+}

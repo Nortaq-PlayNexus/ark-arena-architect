@@ -1,0 +1,125 @@
+ARK Master Suite — changelog
+=============================
+(Earlier entries refer to the same codebase as “ARK Arena Architect”.)
+
+2.1.0 (2026-04-11)
+------------------
+- **Per-route error boundaries**: lazy suite pages wrap in `SuiteSuspenseBoundary` (ErrorBoundary + Suspense) so one failed module does not blank the whole app; crash UI includes suite navigation links (file://-safe hash anchors).
+- **Toolkit**: `?tab=spawn-grids` syncs the outer Calculators / Spawn grids tabs with the URL (shareable deep link).
+- **Settings**: INI library card — snippet count, export backup JSON, open INI page, clear local snippets (with confirm).
+- **Diagnostics**: `suite.routes`, `suite.storageKeys`, `suite.localStoragePresent` for support bundles.
+- **404**: links to Cluster, Toolkit, INI, Companions, Settings, Diagnostics.
+- **Playwright**: smoke coverage for `/ini`, `/settings`, `/companions`, and toolkit deep link; assertions aligned with **ARENA WORKSPACE** header and non-ambiguous mode / INI headings.
+
+2.0.3 (2026-04-11)
+------------------
+- **INI library** (`/ini`): localStorage-backed snippets (GameUserSettings / Engine / Input / Other), editor, import `.ini` or JSON backup, export `ark-master-ini-library` JSON, merge import, max 250 snippets / 200k chars each. `src/lib/iniSnippetLibrary.ts` + Vitest.
+- **Companions**: **Download launch registry JSON** (full `companionProjects` payload for runbooks).
+- **Settings**: shortcut button to INI library.
+- **Diagnostics**: `suite.iniSnippetCount`.
+- **Navigation**: Workspaces adds **INI library** (FileCode).
+
+2.0.2 (2026-04-11)
+------------------
+- **Companions** page (`/companions`): typed registry `src/core/companionProjects.ts` with copyable PowerShell blocks for Discord bot, PyQt automation suite, Promote, Python FPS helper, ASA Lag Fixer (.NET), dedicated-manager release folder, and ark-inis stub.
+- **Settings**: shortcut card → launch guide.
+- **Navigation**: System group adds **Companions** (Boxes icon).
+- **Diagnostics** JSON: `suite.companionLaunchEntries` count.
+- Unit test: companion project ids unique, non-empty scripts.
+
+2.0.1 (2026-04-11)
+------------------
+- **Toolkit → Spawn grids**: ported workspace `Terminal.py` (nested 3D grid) and `terminalwall.py` (XZ stepped wall) into `src/lib/spawnGridGenerators.ts` with copy/download and a 100k-line safety cap; Vitest coverage.
+- **Settings**: expanded “Performance & Windows helpers” (Python FPS script, **Asa Smooth Gameplay** WinUI app, **ASADedicatedManager** folder) and **Companion projects** (bot, PyQt suite, Promote, ark-inis stub, `Server/` data).
+- Sidebar copy: Toolkit description mentions spawn-grid generators.
+
+2.0.0 (2026-04-11)
+------------------
+- **ARK Master Suite**: unified shell with sidebar navigation — Arena workspace (`/`), Cluster registry (`/cluster`), Toolkit calculators (`/toolkit`), Settings (`/settings`), Diagnostics (`/diagnostics`).
+- Cluster module: zod-validated **localStorage** registry (servers + alerts), import/export JSON, **metric snapshots** for Recharts (user-recorded, not fabricated RCON data).
+- Toolkit: breeding/damage/resource/taming/raid calculators merged from cluster web tools (client-side math).
+- Theme: `success` / `warning` / `info` HSL tokens for status UI.
+- Native Windows FPS helper moved to repo `native-tools/fps_optimizer/main.py`; root `ark_fps_optimizer.py` launches it.
+- Electron `productName` / appId updated for portable builds.
+- Package rename: `ark-master` v2.0.0.
+
+1.5.5 (2026-04-10)
+------------------
+- Custom Caves bundled **GEN2** map (`customCaves.json`): all spawn lines use **Genesis 2 loadout mannequin** blueprint again; `placementType` **open-room** (UI label replaces “Wall of terminals”). Standard cave ingest (`ingest-custom-caves.mjs`) skips mannequin→terminal for folders named **GEN2** / Genesis 2.
+
+1.5.4 (2026-04-10)
+------------------
+- Custom Caves — **Terror Gen2** (`terror-gen2`): shipped `terrorCustoms.json` spawn lines use **Structure_LoadoutDummy_Hotbar** (loadout mannequins) again instead of Tribute Terminal; `placementType` set to **open-room**. Terror ingest script skips mannequin→terminal for folders named `Gen2` / Genesis 2 so future `npm run ingest:caves:terror` matches.
+
+1.5.3 (2026-04-10)
+------------------
+- **Nuketown (inspired)**: removed single full-map floor slab; **road is its own strip** with **cul-de-sac end bulbs**; **west vs east house + yard are separate pads** with **lawn gaps** (no voxels) between road and lots; **school bus locked to map center** `(cx, cy)` on the road; extra van/sedan clusters, **second-story** house slabs, **yard corner posts**, taller **utility-style** posts on road edges.
+
+1.5.2 (2026-04-10)
+------------------
+- **Nuketown (inspired)** generator reworked to match published map topology (Call of Duty Wiki / Fandom): central road splitting **symmetrical −X / +X house sides**, **two-story shells**, **backyard slabs**, **garages toward the road**, **school bus + moving van** on the road, **lane cars**, **mannequin pillars** (wiki notes mannequins in homes). Still an ARK one-blueprint voxel blockout — not the commercial game’s mesh, textures, or exact metrics.
+
+1.5.1 (2026-04-10)
+------------------
+- Arenas: **Nuketown (inspired)**, **Shipment (inspired)**, and **Rust (inspired)** — procedural voxel homages to iconic small FPS layouts (fenced street + houses + bus; container cram; tower + catwalks). Not affiliated with or endorsed by any commercial game; swap blueprint to your ARK structures for the real look.
+- Snapshot test includes `Nuketown (inspired)` generation hash.
+
+1.5.0 (2026-04-10)
+------------------
+This release is a **large quality-of-life batch** (not a literal “100 features” count).
+
+- Header: online/offline indicator, app version, UI font scale (A− / A+), and **Compact** layout toggle (persisted).
+- **Quick workspace slots** (3): save / restore / clear full workspace JSON in localStorage; mirrored on Export tab and in the command palette (Ctrl+K / ⌘+K).
+- Command palette **Tools**: diagnostics download, copy workspace JSON, clear paste-chunk checkmarks, clear tab session snapshot, randomize grid footprint, reset structure placement, copy teleport or structure-center XYZ, export recent builds CSV.
+- **Recent builds CSV** export (from Copy-all history).
+- Preview column: short hint when builds split into multiple paste chunks.
+- `document.title` shows mode build label and command count (caves mode uses a fixed title).
+- Unit tests: workspace quick slots + recent-builds CSV.
+
+1.4.0 (2026-04-10)
+------------------
+- Command preview: virtualized list renders all commands (huge builds stay scrollable); long lines truncate in-panel — use Copy / Download for full text.
+- Export tab: “Support diagnostics” downloads structured JSON (version, browser, build stats, full workspace snapshot) for tickets / event support.
+- Production web builds: optional service worker (`public/sw.js`) caches successful GETs and serves cached assets when offline; skipped on file:// (Electron) and in `vite dev`.
+- Unit test for diagnostics export.
+
+1.3.0 (2026-04-10)
+------------------
+- Session recovery: workspace snapshot auto-saves to sessionStorage (debounced); after refresh in the same tab,
+  settings restore automatically unless you opened a share URL (`config=`). Survives reload; clears when the tab closes.
+- Performance: 3D preview uses React `useDeferredValue` so huge command lists stay smooth while regenerating.
+- Code-splitting: main workspace page loads via `React.lazy` + Suspense with a themed loading shell.
+- Share links: invalid or corrupted `config=` shows an error and strips the query/hash fragment.
+- Accessibility / comfort: `aria-busy` on the main region while structures generate; reduced-motion tames pulse and scanlines.
+- Tests for workspace session helpers.
+
+1.2.0 (2026-04-10)
+------------------
+- Full workspace snapshots (v2): share link, Export JSON, and named presets now round-trip grid dimensions,
+  wall/stack settings, spawn anchor, face/yaw/placement, structure options (maze, gates, creature detail, etc.),
+  chunk size, copy mode, teleport triple, and custom filename.
+- Safe load: importing / preset load / URL config skips one activeShape “default sync” pass so saved options are not overwritten.
+- Command palette: search/filter, scrollable list, toggle 3D / stats / command preview, copy teleport line; grouped sections.
+- Share JSON import limit raised to 512 KB with clearer copy vs preset-bundle guidance.
+
+1.1.1 (2026-04-10)
+------------------
+- Share & Export: Import JSON (same schema as Export JSON / share payload); export now includes mode + creature detail level for round-trip.
+- Shared link loader uses the same field mapping as JSON import (mode, creature detail, blueprint, etc.); warns if no fields match.
+- Preview column: approximate copy-all character count, download file size, and “Copy build summary” for notes or Discord.
+- Command palette: copy build summary; copy first paste chunk when multi-chunk pastes apply.
+- Keyboard shortcuts help lists Ctrl+K / ⌘+K (command palette).
+- `applyArenaSharePayload` helper + unit tests; `formatBytes` utility for UI.
+
+1.1.0 (2026-04-10)
+------------------
+- Command palette (Ctrl/Cmd+K): focus trap, Escape to close, extracted component.
+- Main page split: header, form field helpers, and arena constants in dedicated modules.
+- Share links: UTF-8 safe encoding; file:// / HashRouter URLs; URL-safe config param.
+- Electron: single-instance lock (second launch focuses existing window).
+- Tooling: ESLint clean with react-refresh override for shadcn UI; expanded unit tests.
+- Windows portable build ships with bundled docs (see package.json build.extraFiles).
+
+1.0.0
+-----
+- Initial public feature set: grid, structures, caves, 3D preview, presets, export.
